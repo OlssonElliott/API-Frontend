@@ -1,3 +1,5 @@
+import { fetchRandomMeal } from "./mealApiFetch.mjs";
+
 const generate = document.getElementById("generate");
 const save = document.getElementById("save");
 const mealCheckbox = document.getElementById("mealCheckbox");
@@ -7,6 +9,6 @@ const letterInput = document.getElementById("letterInput");
 
 export function generateRecipyButton(){
     generate.addEventListener("click", () =>{
-        
+        fetchRandomMeal();
     })
 }

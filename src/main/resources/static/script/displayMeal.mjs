@@ -6,6 +6,10 @@ const currentIngredients = document.getElementById("currentIngredients");
 
 //hämtar meal data, loopar igenom all data och skriv ut på html.
 export function insertMealDetails(meal){
+    currentIngredients.innerHTML = ""; //uppdaterar inte listan annars
+    currentTitle.innerHTML = "";
+    currentCategory.innerHTML = "";
+
     currentTitle.textContent = meal.strMeal;
     currentCategory.textContent += " " + meal.strCategory;
     currentMealImg.src = meal.strMealThumb;
