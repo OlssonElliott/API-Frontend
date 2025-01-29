@@ -1,0 +1,20 @@
+body {
+    background-color:bisque;
+}
+
+#logga {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#currentMeal {
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+}
+
+#currentMealImg {
+    max-width: 300px;
+    max-height: 300px;
+}
