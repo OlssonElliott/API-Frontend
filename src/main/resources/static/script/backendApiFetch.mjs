@@ -18,8 +18,8 @@ fetch(`http://localhost:8080/find-meal?id=${id}`, {
     
 }
 
-export function addMeal(id, source, comment, favorite){
-    fetch("http://localhost:8080/add-meal", {
+export function addMeal(id, source, comment, favorite){g
+    return fetch("http://localhost:8080/add-meal", {
         method: "POST",
         body: JSON.stringify({
             id: id,
@@ -32,7 +32,6 @@ export function addMeal(id, source, comment, favorite){
         }
     })
     .then(res => res.text())
-    .then(data => console.log(data));
 }
 
 export function deleteMeal(id){
@@ -42,8 +41,12 @@ export function deleteMeal(id){
             "Content-type": "application/json"
         }
     })
-    .then(res => res.text())
-    .then(data => console.log(data));
+    .then(res =>res.text())
+    .then(data => {
+    return data;
+    });
+        
+        
 }
 
 export function favoriteMeal(id){

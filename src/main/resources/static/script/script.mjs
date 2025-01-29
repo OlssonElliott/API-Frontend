@@ -1,7 +1,7 @@
 import { addMeal, deleteMeal, favoriteMeal, fetchMeals, findMeal } from "./backendApiFetch.mjs";
 import {fetchAllCategories, fetchMealById, fetchRandomMeal, filterMealsByCategory, filterMealsByFirstLetter} from "./mealApiFetch.mjs";
 import{ insertMealDetails } from "./displayMeal.mjs";
-import { generateRecipyButton, saveRecipyButton } from "./buttonFunctions.mjs";
+import { generateRecipeButton, saveOrDeleteButton} from "./buttonFunctions.mjs";
 
 //Funktion/Objekt för globalt värde för nuvarande meal.
 export const currentMealId = {
@@ -15,8 +15,8 @@ export const currentMealId = {
 
 //display meal
 fetchRandomMeal();
-generateRecipyButton();
-saveRecipyButton();
+generateRecipeButton();
+saveOrDeleteButton();
 
 
 
@@ -37,6 +37,3 @@ saveRecipyButton();
 //deleteMeal(6);
 //favoriteMeal(1);
 
-export function setCurrentMeal(newCurrentMeal) {
- currentMeal = newCurrentMeal;
-}
