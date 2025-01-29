@@ -1,0 +1,9 @@
+body {
+    background-color:bisque;
+}
+
+#logga {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
