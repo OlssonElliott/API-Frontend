@@ -1,13 +1,11 @@
 import { addMeal, deleteMeal, favoriteMeal, fetchMeals, findMeal } from "./backendApiFetch.mjs";
 import {fetchAllCategories, fetchMealById, fetchRandomMeal, filterMealsByCategory, filterMealsByFirstLetter} from "./mealApiFetch.mjs";
 import{ insertMealDetails } from "./displayMeal.mjs";
+import {} from "./buttonFunctions.mjs";
 
 //display meal
 fetchRandomMeal()
-.then(mealData => {
-    console.log(mealData);
-    insertMealDetails(mealData);
-});
+
 
 //frontend, meal-api anrop:
 //fetchRandomMeal();
