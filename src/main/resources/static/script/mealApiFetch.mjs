@@ -1,11 +1,13 @@
 import { insertMealDetails } from "./displayMeal.mjs";
+import { currentMealId } from "./script.mjs";
 
 export function fetchRandomMeal(){
-    fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+    return fetch("https://www.themealdb.com/api/json/v1/1/random.php")
     .then(res => res.json())
     .then(data => {
         insertMealDetails(data.meals[0]); //lägger data från random meal i insertMealDetails metoden (displayMeals.mjs)
-
+        currentMealId.id = data.meals[0].idMeal;
+        currentMealId.source = data.meals[0].strSource;
     });
 }
 

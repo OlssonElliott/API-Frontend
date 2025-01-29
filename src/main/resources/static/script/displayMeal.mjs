@@ -25,6 +25,4 @@ export function insertMealDetails(meal){
         }
     }
     
-    
-    
 }

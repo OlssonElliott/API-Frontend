@@ -1,9 +1,8 @@
 console.log("meals importerad korrekt");
 
 export function fetchMeals(){
-    fetch("http://localhost:8080/meals")
+    return fetch("http://localhost:8080/meals")
     .then(res => res.json())
-    .then(data => console.log(data));
 }
 
 export function findMeal(id){
