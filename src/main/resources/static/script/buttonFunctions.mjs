@@ -1,4 +1,4 @@
-import { fetchRandomMeal } from "./mealApiFetch.mjs";
+import { fetchAllCategories, fetchRandomMeal, filterMealsByCategory } from "./mealApiFetch.mjs";
 import { currentMealId } from "./script.mjs";
 import { addMeal, deleteMeal, fetchMeals, findMeal, favoriteMeal } from "./backendApiFetch.mjs";
 
@@ -12,6 +12,7 @@ const letterInput = document.getElementById("letterInput");
 
 let isMealSaved = false; //måste finnas för att säkerställa så fetchMeals hinner köras innan saveOrDeleteButton körs, error annars.
 
+//Favoritmåltid-------------------------------------------------------------------
 //Favoritmåltid kontroll
 function isMealFavorite(){
         if (isMealSaved){
@@ -47,6 +48,9 @@ export function favoriteMealCheckbox(){
     });
 }
 
+//-------------------------------------------------------------------
+//Generera ny måltid-------------------------------------------------
+
 // Generera nytt recept med knapp
 export function generateRecipeButton(){
     generate.addEventListener("click", () =>{
@@ -59,12 +63,18 @@ export function generateRecipeButton(){
     });
 }
 
+//-------------------------------------------------------------------
+//Funktioner till knapp för att spara eller ta bort recept-----------
+
 // Spara eller ta bort recept från databas med knapp, kontrollerar om receptet redan är sparat
 export function saveOrDeleteButton(){ 
     save.addEventListener("click", () =>{
         adjustButtonIfSaved(true);
     });
 }
+
+//-------------------------------------------------------------------
+//Sök efter recept---------------------------------------------------
 
 // Kontrollera ifall recept är sparat och ändra spara knapp
 
@@ -81,7 +91,7 @@ function adjustButtonIfSaved(withAddAndDelete){
                         save.innerHTML = "Ta bort recept";
                         isMealSaved = true;
                         console.log(currentMealId.id + " id sparat");
-                        if (mealCheckbox.checked === true){
+                        if (mealCheckbox.checked){
                             favoriteMeal(currentMealId.id)
                             .then(() => {
                                 isMealFavorite();
@@ -100,5 +110,29 @@ function adjustButtonIfSaved(withAddAndDelete){
         }
     })
 }
+//-------------------------------------------------------------------
+// Sortera recept efter kategori-------------------------------------
+export function fillCategoryFromApi() {
+    fetchAllCategories()
+    .then((data) => {
+        if (data.categories) {
+            category.innerHTML = `<option value="">Sortera efter kategori</option>`;
+            data.categories.forEach((cat) => {
+                const option = document.createElement("option");
+                option.value = cat.strCategory;
+                option.textContent = cat.strCategory;
+                category.appendChild(option);
+            });
+        }
+    });
+}
+
+export function categoryFilter(){
+    category.addEventListener("change", () => {
+        filterMealsByCategory(category.value);
+    });
+}
+
+//-------------------------------------------------------------------
 
 

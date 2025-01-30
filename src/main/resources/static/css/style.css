@@ -9,12 +9,21 @@ body {
 }
 
 #currentMeal {
-    display: flexbox;
-    justify-content: center;
-    align-items: center;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
 }
 
 #currentMealImg {
     max-width: 300px;
     max-height: 300px;
+}
+
+#generateMeal {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 20px;
 }
