@@ -1,5 +1,5 @@
 body {
-    background-color:bisque;
+    background-color: bisque;
 }
 
 #logga {
@@ -9,11 +9,11 @@ body {
 }
 
 #currentMeal {
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 #currentMealImg {
@@ -22,8 +22,22 @@ body {
 }
 
 #generateMeal {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
+}
+
+#mealImgAndIngredients {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#currentInstructions {
+    max-width: 300px;
 }

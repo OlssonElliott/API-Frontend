@@ -8,7 +8,8 @@ export const currentMealId = {
  id: null,
  source: null,
  comment: null,
- favorite: null
+ favorite: null,
+ instructions: null
 };
 
 
