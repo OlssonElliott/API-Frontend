@@ -132,7 +132,7 @@ export function categoryFilter(){
 }
 
 //-------------------------------------------------------------------
-// Ny ruta för att visa sparade recept-------------------------------
+// Modal funktioner (Ny ruta för att visa sparade recept)------------
 // Referenslänk till hur jag gjorde modal: https://www.w3schools.com/howto/howto_css_modals.asp
 export function showModal(){
 
@@ -170,7 +170,20 @@ export function showModal(){
                   <button class="deleteBtn" data-id="${meal.id}">Ta bort</button>`;
                   savedMeals.appendChild(mealDiv);
               });
+              deleteMealButton();
           });
+        }
+
+        export function deleteMealButton(){
+            const deleteButtons = document.querySelectorAll(".deleteBtn");
+            deleteButtons.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    deleteMeal(btn.dataset.id)
+                    .then(() => {
+                        printSavedMeals();
+                    });
+                });
+            });
         }
 
 
