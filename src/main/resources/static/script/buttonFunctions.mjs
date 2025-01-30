@@ -6,8 +6,6 @@ const generate = document.getElementById("generate");
 const save = document.getElementById("save");
 const mealCheckbox = document.getElementById("mealCheckbox");
 const category = document.getElementById("category");
-const letterInput = document.getElementById("letterInput");
-
 
 
 let isMealSaved = false; //måste finnas för att säkerställa så fetchMeals hinner köras innan saveOrDeleteButton körs, error annars.
@@ -134,5 +132,48 @@ export function categoryFilter(){
 }
 
 //-------------------------------------------------------------------
+// Ny ruta för att visa sparade recept-------------------------------
+// Referenslänk till hur jag gjorde modal: https://www.w3schools.com/howto/howto_css_modals.asp
+export function showModal(){
+
+    const savedModalBtn = document.getElementById("savedModalBtn");
+    const myModal = document.getElementById("myModal");
+    const close = document.getElementById("close");
+    const savedMeals = document.getElementById("savedMeals");
+
+        savedModalBtn.onclick = function() {
+            myModal.style.display = "block";
+          }
+        
+          close.onclick = function() {
+            myModal.style.display = "none";
+          }
+        
+          myModal.onclick = function(event) {
+            if (event.target == myModal) {
+              myModal.style.display = "none";
+            }
+          }
+
+        }
+
+        export function printSavedMeals(){
+          fetchMeals()
+          .then((meals) => {
+              savedMeals.innerHTML = "";
+              meals.forEach((meal) => {
+                  const mealDiv = document.createElement("div");
+                  mealDiv.className = "meal";
+                  mealDiv.innerHTML = `<h3>${meal.id}</h3>
+                   <a href="${meal.source}" target="_blank">${meal.source}</a>
+                  <p>${meal.comment}</p>
+                  <button class="deleteBtn" data-id="${meal.id}">Ta bort</button>`;
+                  savedMeals.appendChild(mealDiv);
+              });
+          });
+        }
+
+
+
 
 
