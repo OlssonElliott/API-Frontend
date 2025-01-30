@@ -65,7 +65,7 @@ body {
   }
 
   .modal-content {
-    background-color: #fefefe;
+    background-color:beige;
     margin: 5% auto; 
     padding: 20px;
     border: 1px solid #888;
@@ -87,5 +87,12 @@ body {
 }
 
 .meal {
-    background-color:#aaa;
+    background-color:lightgray;
+}
+
+#modalHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }

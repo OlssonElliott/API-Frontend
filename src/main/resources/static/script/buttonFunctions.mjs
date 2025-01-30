@@ -1,11 +1,13 @@
 import { fetchAllCategories, fetchRandomMeal, filterMealsByCategory } from "./mealApiFetch.mjs";
 import { currentMealId } from "./script.mjs";
-import { addMeal, deleteMeal, fetchMeals, findMeal, favoriteMeal } from "./backendApiFetch.mjs";
+import { addMeal, deleteMeal, fetchMeals, findMeal, favoriteMeal, addComment } from "./backendApiFetch.mjs";
 
 const generate = document.getElementById("generate");
 const save = document.getElementById("save");
 const mealCheckbox = document.getElementById("mealCheckbox");
 const category = document.getElementById("category");
+const commentField = document.getElementById("commentField");
+const commentBtn = document.getElementById("commentBtn");
 
 
 let isMealSaved = false; //måste finnas för att säkerställa så fetchMeals hinner köras innan saveOrDeleteButton körs, error annars.
@@ -57,6 +59,7 @@ export function generateRecipeButton(){
         .then(() => {
             adjustButtonIfSaved(false);
             isMealFavorite();
+            commentFunction();
         });
     });
 }
@@ -84,6 +87,7 @@ function adjustButtonIfSaved(withAddAndDelete){
         save.innerHTML = isMealSaved ? "Ta bort recept" : "Spara recept";
         if (withAddAndDelete){ //om man trycker på spara knapp
             if (!isMealSaved) {
+                commentField.disabled = false;
                 addMeal(currentMealId.id, currentMealId.source, "", false)
                     .then(() => {                    
                         save.innerHTML = "Ta bort recept";
@@ -143,6 +147,7 @@ export function showModal(){
 
         savedModalBtn.onclick = function() {
             myModal.style.display = "block";
+            printSavedMeals();
           }
         
           close.onclick = function() {
@@ -174,7 +179,7 @@ export function showModal(){
           });
         }
 
-        export function deleteMealButton(){
+        function deleteMealButton(){
             const deleteButtons = document.querySelectorAll(".deleteBtn");
             deleteButtons.forEach((btn) => {
                 btn.addEventListener("click", () => {
@@ -186,7 +191,25 @@ export function showModal(){
             });
         }
 
+//-------------------------------------------------------------------
+// Kommentar funktion------------------------------------------------
 
+export function commentFunction(){
+    commentField.value = "";
+    if (!isMealSaved){
+        commentField.disabled = true;
+    }
+
+    commentBtn.addEventListener("click", () => {
+        if (isMealSaved){
+            commentField.disabled = false;
+            currentMealId.comment = commentField.value;
+            console.log(currentMealId.comment);
+            addComment(currentMealId.id, currentMealId.comment)
+        }
+        
+    });
+}
 
 
 
