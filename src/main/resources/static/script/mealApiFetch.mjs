@@ -12,7 +12,7 @@ export function fetchRandomMeal(){
 }
 
 export function fetchMealById(id){
-    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+   return fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
     .then(res => res.json())
     .then(data => console.log(data));
 }

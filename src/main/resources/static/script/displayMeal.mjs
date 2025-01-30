@@ -24,5 +24,4 @@ export function insertMealDetails(meal){
             currentIngredients.appendChild(listItem);
         }
     }
-    
 }
