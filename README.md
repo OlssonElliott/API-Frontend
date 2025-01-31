@@ -4,7 +4,7 @@
 
 ## Överblick över programmet:
 
-Detta programmet är frontend-sidan utav en recept applikation, den slumpar fram ett recept med hjälp utav ett api ifrån https://www.themealdb.com.
+Detta programmet är frontend-delen utav en recept applikation, den slumpar fram ett recept med hjälp utav ett api ifrån https://www.themealdb.com.
 Utöver detta finns det funktionalitet till att spara/rader recept där både id och länk till receptets källa finns. Det går även att lägga till och redigera en kommentar till varje sparat recept. Varje recept kan även markeras som favorit.
 
 ## Funktioner för programmet:
@@ -31,3 +31,11 @@ Utöver detta finns det funktionalitet till att spara/rader recept där både id
   https://www.w3schools.com/jsref/jsref_some.asp
 
 - Inner html i printSavedMeals() (modalFunctions.mjs) använde jag chatGPT för att hjälpa mig generera då den blev väldigt lång och komplicerad för att få fram allt innehåll.
+
+## Förbättringar som finns kvar att göra:
+
+- Det finns fortfarande en bugg som gör att knappen 'Ta bort recept' inte uppdateras till 'Spara recept' efter att ett recept raderats från modal.
+- Titel skrivs inte ut på varje recept inuti modal.
+- Filtrering efter recepttyp har påbörjats men är just nu utkommenterad.
+- Behöver förbättra indikationen för att en kommentar har sparats samt göra inputfältet för kommentarer större utanför modal.
+- Inte importera .mjs mellan varandra utan skriva om koden så allt samlas i scipt.mjs eller liknande.
