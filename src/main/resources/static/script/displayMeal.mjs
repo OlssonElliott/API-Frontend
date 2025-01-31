@@ -4,9 +4,9 @@ const currentMealImg = document.getElementById("currentMealImg");
 const currentIngredients = document.getElementById("currentIngredients");
 const currentInstructions = document.getElementById("currentInstructions");
 
-//hämtar meal data, loopar igenom all data och skriv ut på html.
+//hämtar meal data, loopar igenom all data och skriv ut på html, funktionen körs direkt i mealApiFetch.mjs istället för script.mjs
 export function insertMealDetails(meal){
-    currentIngredients.innerHTML = ""; //uppdaterar inte listan annars
+    currentIngredients.innerHTML = ""; //uppdaterar inte listan om jag inte sätter det till "" först.
     currentTitle.innerHTML = "";
     currentCategory.innerHTML = "";
     currentInstructions.innerHTML = "";

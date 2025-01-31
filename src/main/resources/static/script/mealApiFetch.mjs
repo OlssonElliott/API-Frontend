@@ -6,8 +6,9 @@ export function fetchRandomMeal(){
     .then(res => res.json())
     .then(data => {
         insertMealDetails(data.meals[0]); //lägger data från random meal i insertMealDetails metoden (displayMeals.mjs)
-        currentMealId.id = data.meals[0].idMeal;
-        currentMealId.source = data.meals[0].strSource;
+        currentMealId.id = data.meals[0].idMeal; 
+        currentMealId.source = data.meals[0].strSource; 
+        return data.meals[0];
     });
 }
 
