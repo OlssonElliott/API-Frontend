@@ -13,8 +13,9 @@ return fetch(`http://localhost:8080/find-meal?id=${id}`, {
     .then(res => res.json())
     .then(data => {
         console.log(data);
-        return data;
-    });
+        return data || null;
+    })
+
 }
 
 export function addMeal(id, source, comment, favorite){
@@ -62,4 +63,3 @@ export function addComment(id, comment){
     .then(data => console.log(data));
 }
 
-//behöver en funktion för att uppdatera kommentar

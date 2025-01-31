@@ -18,14 +18,13 @@ function isMealFavorite(){
         if (isMealSaved){
            findMeal(currentMealId.id)
            .then((testMeal) => {
-           if (testMeal.favorite){
+           if (testMeal && typeof testMeal.favorite !== 'undefined'){
                 mealCheckbox.checked = true;
-              }
-            else {
+              } else {
             mealCheckbox.checked = false;
             }
-        });
-    }
+        })
+    } else {(mealCheckbox.checked = false);}
 }
 
 //favoritmåltid klick på knapp
@@ -56,9 +55,14 @@ export function generateRecipeButton(){
     generate.addEventListener("click", () =>{
         mealCheckbox.checked = false;
         fetchRandomMeal()
+        .then((newMeal) => {
+            currentMealId.id = newMeal.idMeal; //idMeal är från API, id är från databasen. 2 timmars glädje innan jag såg detta.
+            return adjustButtonIfSaved(false);
+        })
         .then(() => {
-            adjustButtonIfSaved(false);
             isMealFavorite();
+        })
+        .then(() => {        
             commentFunction();
         });
     });
@@ -78,9 +82,8 @@ export function saveOrDeleteButton(){
 //Sök efter recept---------------------------------------------------
 
 // Kontrollera ifall recept är sparat och ändra spara knapp
-
 function adjustButtonIfSaved(withAddAndDelete){
-    fetchMeals()
+    return fetchMeals()
     .then((meals) => {    
         const testId = meals.some(meal => String(meal.id) === String(currentMealId.id)); //.some är en for-each som testar alla element i en array: https://www.w3schools.com/jsref/jsref_some.asp 
         isMealSaved = testId;   
@@ -88,7 +91,7 @@ function adjustButtonIfSaved(withAddAndDelete){
         if (withAddAndDelete){ //om man trycker på spara knapp
             if (!isMealSaved) {
                 commentField.disabled = false;
-                addMeal(currentMealId.id, currentMealId.source, "", false)
+                return addMeal(currentMealId.id, currentMealId.source, "", false)
                     .then(() => {                    
                         save.innerHTML = "Ta bort recept";
                         isMealSaved = true;
@@ -96,18 +99,18 @@ function adjustButtonIfSaved(withAddAndDelete){
                         if (mealCheckbox.checked){
                             favoriteMeal(currentMealId.id)
                             .then(() => {
-                                isMealFavorite();
+                               return isMealFavorite();
                             });
                         }
                     });
             } else {
-                deleteMeal(currentMealId.id)
+                return deleteMeal(currentMealId.id)
                 .then(() => {                
                     save.innerHTML = "Spara recept";
                     isMealSaved = false;
                     console.log(currentMealId.id + " id borttaget");
                     
-                })
+                });
             }
         }
     })
@@ -273,16 +276,16 @@ export function commentFunction(){
         commentField.disabled = true;
     }
 
-    commentBtn.addEventListener("click", () => {
-        if (isMealSaved){
-            commentField.disabled = false;
-            currentMealId.comment = commentField.value;
-            console.log(currentMealId.comment);
-            addComment(currentMealId.id, currentMealId.comment)
-        }
-        
-    });
 }
 
+export function commentButton(){
+    commentBtn.addEventListener("click", () => {
+       if (isMealSaved){
+           commentField.disabled = false;
+           currentMealId.comment = commentField.value;
+           addComment(currentMealId.id, currentMealId.comment)
+       }
+   });
+}
 
 
