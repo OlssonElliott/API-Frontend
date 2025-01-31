@@ -1,23 +1,31 @@
 import { addMeal, deleteMeal, favoriteMeal, fetchMeals, findMeal } from "./backendApiFetch.mjs";
-import {fetchAllCategories, fetchMealById, fetchRandomMeal, filterMealsByCategory, filterMealsByFirstLetter} from "./mealApiFetch.mjs";
+import {fetchAllCategories, fetchMealById, fetchRandomMeal, filterMealsByCategory} from "./mealApiFetch.mjs";
 import{ insertMealDetails } from "./displayMeal.mjs";
-import { generateRecipeButton, saveOrDeleteButton, favoriteMealCheckbox} from "./buttonFunctions.mjs";
+import { generateRecipeButton, saveOrDeleteButton, favoriteMealCheckbox, fillCategoryFromApi, categoryFilter, showModal, printSavedMeals, commentFunction } from "./buttonFunctions.mjs";
 
 //Funktion/Objekt för globalt värde för nuvarande meal.
 export const currentMealId = {
  id: null,
  source: null,
  comment: null,
- favorite: null
+ favorite: null,
+ instructions: null
 };
 
 
 
 //display meal
-fetchRandomMeal();
-generateRecipeButton();
-saveOrDeleteButton();
-favoriteMealCheckbox();
+document.addEventListener("DOMContentLoaded", () => {
+    fetchRandomMeal();
+    generateRecipeButton();
+    saveOrDeleteButton();
+    favoriteMealCheckbox();
+    fillCategoryFromApi();
+    categoryFilter();
+    showModal();
+    printSavedMeals();
+    commentFunction();
+});
 
 
 //frontend, meal-api anrop:

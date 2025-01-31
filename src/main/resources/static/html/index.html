@@ -13,28 +13,41 @@
         <h1>Dina Recept</h1>
     </div>
 
+    <div id="myModal" class="modal">
+
+        <div class="modal-content">
+            <span id="close">&times;</span>
+            <h2 id="modalHeader">Sparade Recept</h2>
+            <div id="savedMeals"></div>
+        </div>
+
+    </div>
+
     <div id="generateMeal">
         <button id="generate">Generera nytt recept</button>
         <button id="save">Spara recept</button>
-        <label for="mealCheckbox">Favoritmåltid!</label>
-        <input type="checkbox" id="mealCheckbox">
+        <button id="savedModalBtn">Mina sparade recept</button>
         <select id="category">
             <option value="" disabled selected hidden>Sortera alla recept efter kategori</option>
-            <option value="Test1">Test1</option>
-            <option value="Test2">Test2</option>
         </select>
-        <label for="letterInput">Sortera efter bokstav</label>
-        <input type="text" id="letterInput" maxlength="1" pattern="[A-Za-zÅÄÖåäö]">
     </div>
 
     <div id="currentMeal">
         <h2 id="currentTitle"></h2>
+        <label for="mealCheckbox">Nytt favoritrecept?</label>
+        <input type="checkbox" id="mealCheckbox">
         <h2 id="currentCategory">Kategori: </h2>
-        <img id="currentMealImg" src="" alt="">
-        <ul id="currentIngredients"> Ingredienser: 
+        
+        <div id="mealImgAndIngredients">            
+            <p id="currentInstructions"></p>
+            <img id="currentMealImg" src="" alt="">
+            <ul id="currentIngredients"> Ingredienser:</ul>
+        </div>
 
-        </ul>
-
+        <div id="currentComment"></div>
+        <input type="textfield" id="commentField" placeholder="Lägg till kommentar">
+        <button id="commentBtn">Spara kommentar</button>
     </div>
+
 </body>
 </html>

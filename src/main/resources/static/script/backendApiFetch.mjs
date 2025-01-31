@@ -1,5 +1,3 @@
-console.log("meals importerad korrekt");
-
 export function fetchMeals(){
     return fetch("http://localhost:8080/meals")
     .then(res => res.json())
@@ -55,3 +53,13 @@ export function favoriteMeal(id){
     .then(res => res.text())
     .then(data => console.log(data));
 }
+
+export function addComment(id, comment){
+    return fetch(`http://localhost:8080/comment?id=${id}&comment=${comment}`, {
+        method: "PUT",
+    })
+    .then(res => res.text())
+    .then(data => console.log(data));
+}
+
+//behöver en funktion för att uppdatera kommentar
